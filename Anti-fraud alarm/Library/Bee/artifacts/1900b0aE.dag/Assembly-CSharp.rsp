@@ -356,6 +356,7 @@
 "Assets/BrokenVector/LowPolyFencePack/Scripts/DoorToggle.cs"
 "Assets/Scripts/PlayerMove.cs"
 "Assets/Scripts/Signaling.cs"
+"Assets/Scripts/SoundTriger.cs"
 -langversion:9.0
 
 /deterministic
