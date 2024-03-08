@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,28 +10,33 @@ public class Signaling : MonoBehaviour
     public void Launch(bool playerInside)
     {
         _playerInside = playerInside;
-        StartCoroutine(ChangeVolume());
+        StartCoroutine(SelectingChangesVolume());
     }
 
-    private IEnumerator ChangeVolume()
+    private IEnumerator SelectingChangesVolume()
     {
-        float maxVolume = 1;
+        float maxVolum = 1;
         float minVolum = 0;
-        float increaseRate = 0.1f;
-        float decreaseRate = 0.1f;
+        float rate—hange = 0.1f;
 
         while (true)
         {
             if (_playerInside == true)
             {
-                _audioSourse.volume = Mathf.MoveTowards(_audioSourse.volume, maxVolume, increaseRate * Time.deltaTime);
+                ChangesVolume(maxVolum, rate—hange);
             }
             else
             {
-                _audioSourse.volume = Mathf.MoveTowards(_audioSourse.volume, minVolum, decreaseRate * Time.deltaTime);
+                ChangesVolume(minVolum, rate—hange);
             }
 
             yield return null;
         }
     }
+
+    private void ChangesVolume(float value , float rate—hange)
+    {
+
+        _audioSourse.volume = Mathf.MoveTowards(_audioSourse.volume, value, rate—hange * Time.deltaTime);
+    }    
 }
