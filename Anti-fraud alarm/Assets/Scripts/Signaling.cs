@@ -5,38 +5,40 @@ public class Signaling : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSourse;
 
-    private bool _playerInside;
+    private float _rate—hange = 0.1f;
+    private Coroutine _variationVolume;
 
-    public void Launch(bool playerInside)
+    public void Launch(float maxVolum)
     {
-        _playerInside = playerInside;
-        StartCoroutine(SelectingChangesVolume());
+        if(_variationVolume != null)
+        {
+            StopCoroutine(_variationVolume);
+        }
+
+        _variationVolume = StartCoroutine(VariationVolume(maxVolum));
     }
 
-    private IEnumerator SelectingChangesVolume()
+    private IEnumerator VariationVolume(float maxVolum)
     {
-        float maxVolum = 1;
-        float minVolum = 0;
-        float rate—hange = 0.1f;
-
         while (true)
         {
-            if (_playerInside == true)
+            ChangesVolume(maxVolum, _rate—hange);
+
+            if (_audioSourse.volume == 0)
             {
-                ChangesVolume(maxVolum, rate—hange);
+                _audioSourse.enabled = false;
             }
             else
             {
-                ChangesVolume(minVolum, rate—hange);
+                _audioSourse.enabled = true;
             }
 
             yield return null;
         }
     }
 
-    private void ChangesVolume(float value , float rate—hange)
+    private void ChangesVolume(float value, float rate—hange)
     {
-
         _audioSourse.volume = Mathf.MoveTowards(_audioSourse.volume, value, rate—hange * Time.deltaTime);
-    }    
+    }
 }
