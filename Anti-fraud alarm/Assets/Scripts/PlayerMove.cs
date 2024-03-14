@@ -13,15 +13,15 @@ public class PlayerMove : MonoBehaviour
 
     private void Rotate()
     {
-        float rotation = Input.GetAxis("Horizontal");
+        float inputY = Input.GetAxis("Horizontal");
 
-        transform.Rotate(_rotationSpeed * rotation * Time.deltaTime * Vector3.up);
+        transform.Rotate(_rotationSpeed * inputY * Time.deltaTime * Vector3.up);
     }
 
     private void Locomotion()
     {
-        float distance = Input.GetAxis("Vertical");
+        float inputX = Input.GetAxis("Vertical");
 
-        transform.Translate(distance * _moveSpeed * Time.deltaTime * Vector3.forward);
+        transform.Translate(inputX * _moveSpeed * Time.deltaTime * Vector3.forward);
     }
 }
